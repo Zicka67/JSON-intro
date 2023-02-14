@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Simple JSON example</title>
+  </head>
+
+  <body>
+
+    <h1>Pour afficher le 3 ieme pouvoir du 2ieme hero</h1>
+    <p>superHeroes['members'][1]['powers'][2]</p> 
+
+    <p>superHeroes['members'][2]['powers'][2]     =>   Pour selectionner le pouvoir 3 du 3ieme hero</p>
+
+    <script>
+    const superHeroes = {
+      "squadName" : "Super hero squad",
+      "homeTown" : "Metro City",
+      "formed" : 2016,
+      "secretBase" : "Super tower",
+      "active" : true,
+      "members" : [
+        {
+          "name" : "Molecule Man",
+          "age" : 29,
+          "secretIdentity" : "Dan Jukes",
+          "powers" : [
+            "Radiation resistance",
+            "Turning tiny",
+            "Radiation blast"
+          ]
+        },
+        {
+          "name" : "Madame Uppercut",
+          "age" : 39,
+          "secretIdentity" : "Jane Wilson",
+          "powers" : [
+            "Million tonne punch",
+            "Damage resistance",
+            "Superhuman reflexes"
+          ]
+        },
+        {
+          "name" : "Eternal Flame",
+          "age" : 1000000,
+          "secretIdentity" : "Unknown",
+          "powers" : [
+            "Immortality",
+            "Heat Immunity",
+            "Inferno",
+            "Teleportation",
+            "Interdimensional travel"
+          ]
+        }
+      ]
+    }
+    </script>
+  </body>
+</html>
