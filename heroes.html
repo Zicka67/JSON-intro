@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-
+    
     <header>
         
     </header>
@@ -18,5 +18,75 @@
         
     </section>
     
+    
+    <script>
+        
+        //Pour récupérer les élements header + section, on stock dans une variable
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        // Pour charger l'URL du fichier JSON que nous voulons récupérer dans une variable
+        var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+        // Afin de créer une requête, nous avons besoin d'instancier un nouvel objet XMLHttpRequest
+        var request = new XMLHttpRequest();
+        
+        // Pour ouvrir une nouvelle requête, grâce à la méthode open() 
+        request.open('GET', requestURL); // Au moins 2 paramètres, ici GET pour récupérer, et l'URL ou adresse de la requête, ici celle du fichier JSON
+        
+        request.responseType = 'json'; //Nous attribuons la valeur 'json' à responseType, signalant au serveur que nous attendons une réponse au format JSON
+        request.send(); // Pour envoyer la requête avec la methode send()
+        
+        request.onload = function() {
+            var superHeroes = request.response; // On stock la reponse a notre request, dans la var superHeroes
+            populateHeader(superHeroes); // Remplira le header avec les données correspondantes
+            showHeroes(superHeroes);// Créer une carte d'identité pour chaque heros dans section
+        }
+        
+        function populateHeader(jsonObj) {
+            var myH1 = document.createElement('h1'); // On créer un h1
+            myH1.textContent = jsonObj['squadName']; // On affiche la le textContent avec lavaleur contenu dans squadName de cet objet jsonObj
+            header.appendChild(myH1); // On ajoute le h1 au header
+            
+            var myPara = document.createElement('p'); // On créer un p
+            myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + jsonObj['formed']; // On fixe les valeurs avec homeTown et formed
+            header.appendChild(myPara); // On ajoute le p au header
+        }
+        
+        function showHeroes(jsonObj) {
+            var heroes = jsonObj['members'];
+            
+            for (var i = 0; i < heroes.length; i++) { // Boucle pour parcourir les members
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var myPara1 = document.createElement('p');
+                var myPara2 = document.createElement('p');
+                var myPara3 = document.createElement('p');
+                var myList = document.createElement('ul'); // On créer une ul, et on va parcourir cette ul, 
+                //en créant une li pour chaque élément avec la boucle qui suit 
+                
+                myH2.textContent = heroes[i].name;
+                myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+                myPara2.textContent = 'Age: ' + heroes[i].age;
+                myPara3.textContent = 'Superpowers:';
+                
+                var superPowers = heroes[i].powers;
+                for (var j = 0; j < superPowers.length; j++) { // Parcours la liste des superpouvoir
+                    var listItem = document.createElement('li'); // créer des li
+                    listItem.textContent = superPowers[j];
+                    myList.appendChild(listItem); // Pour ajouter des listItem a myList ( qui est dans le boucle au dessus, pou les membres)
+                }
+                
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(myPara1);
+                myArticle.appendChild(myPara2);
+                myArticle.appendChild(myPara3);
+                myArticle.appendChild(myList);
+                
+                section.appendChild(myArticle); // On ajoute les myArticle a la section
+            }
+        }
+        
+        
+        
+    </script>
 </body>
 </html>
