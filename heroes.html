@@ -47,14 +47,14 @@
             header.appendChild(myH1); // On ajoute le h1 au header
             
             var myPara = document.createElement('p'); // On créer un p
-            myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + jsonObj['formed']; // On fixe les valeurs avec homeTown et formed
+            myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' ' + jsonObj['formed']; // On fixe les valeurs avec homeTown et formed
             header.appendChild(myPara); // On ajoute le p au header
         }
         
         function showHeroes(jsonObj) {
-            var heroes = jsonObj['members'];
+            var heroes = jsonObj['members']; // On stock la propriété members du JSON, qui est un tab
             
-            for (var i = 0; i < heroes.length; i++) { // Boucle pour parcourir les members
+            for (var i = 0; i < heroes.length; i++) { // Boucle pour parcourir chaque objet du tab members
                 var myArticle = document.createElement('article');
                 var myH2 = document.createElement('h2');
                 var myPara1 = document.createElement('p');
@@ -63,7 +63,7 @@
                 var myList = document.createElement('ul'); // On créer une ul, et on va parcourir cette ul, 
                 //en créant une li pour chaque élément avec la boucle qui suit 
                 
-                myH2.textContent = heroes[i].name;
+                myH2.textContent = heroes[i].name; // Met le name du heros en cours dans le h2 (le textContent du myH2 = au nom du heros en cours (i))
                 myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
                 myPara2.textContent = 'Age: ' + heroes[i].age;
                 myPara3.textContent = 'Superpowers:';
